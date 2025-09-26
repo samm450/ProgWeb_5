@@ -1,0 +1,45 @@
+<div style="border-color: black; border-radius: 1px; border-style: solid; margin: 8px;">
+  <div *ngIf="authentication.isLoggedIn()">
+    <div *ngIf="!isConnectedToHub" style="margin: 4px">
+      <button mat-raised-button color="primary" (click)="connectToHub()">Connexion au Hub SignalR</button>
+    </div>
+    <div *ngIf="isConnectedToHub">
+      <div style="display: flex;">
+        <div style="background-color: #f3ea0c; width: 25%; padding: 8px">
+          <h2>Utilisateurs connectés</h2>
+          <mat-radio-group aria-labelledby="radio-group-label" [(ngModel)]="selectedUser">
+            <ul style="list-style-type:none; padding-left: 8px;">
+              <li *ngFor="let user of usersList">
+                <mat-radio-button [value]="user" (click)="userClick(user)">{{user.key}}</mat-radio-button>
+              </li>
+            </ul>
+          </mat-radio-group>
+        </div>
+
+        <div style="background-color: azure; width: 25%; padding: 8px">
+          <h2>Canaux <button [disabled]="selectedChannel == null" mat-raised-button color="warn" (click)="leaveChannel()" style="margin: 4px">Quitter le canal</button></h2>
+          <form (submit)="createChannel()">
+            <input type="text" [(ngModel)]="newChannelName" name="newChannelName">
+            <button>Créer</button>
+          </form>
+          <ul style="list-style-type:none; padding-left: 8px;">
+            <li *ngFor="let channel of channelsList">
+              <button mat-raised-button color="primary" (click)="joinChannel(channel)" style="margin: 4px">Rejoindre {{channel.title}}</button>
+              <button mat-raised-button color="warn" (click)="deleteChannel(channel)" style="margin: 4px">X</button>
+            </li>
+          </ul>
+        </div>
+
+        <div style="background-color: cadetblue; width: 50%; padding: 8px">
+          <h2>Conversation</h2>
+          <p>Envoyer un message à : <b>{{selectedUser ? selectedUser.key : selectedChannel ? selectedChannel.title : "Tous"}}</b></p>
+          <form (submit)="sendMessage()">
+            <input type="text" [(ngModel)]="message" name="message">
+            <button>Envoyer</button>
+          </form>
+          <p *ngFor="let message of messages" style="margin-bottom: 6px;">{{message}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

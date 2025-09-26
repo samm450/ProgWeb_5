@@ -1,0 +1,29 @@
+<div style="border-color: black; border-radius: 1px; border-style: solid; margin: 8px; padding: 4px;">
+  <h2>Authentification</h2>
+
+  <div *ngIf="!authentication.isLoggedIn()" style="margin: 8px;">
+    <h3>Aucun utilisateur authentifié</h3>
+    <mat-form-field class="example-full-width">
+      <mat-label>Courriel</mat-label>
+      <input type="email" matInput [(ngModel)]="email">
+    </mat-form-field>
+    <p>
+      <button mat-raised-button color="accent" (click)="registerAndLogin()">S'enregistrer et s'authentifier</button>
+    </p>
+    <p>
+      <button mat-raised-button color="primary" (click)="login()">S'authentifier</button>
+    </p>
+  </div>
+  <div *ngIf="authentication.isLoggedIn()" style="margin: 8px;">
+    <h3>Authentifié avec l'utilisateur {{authentication.authenticatedUserEmail}}</h3>
+    <p>
+      <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+    </p>
+    <p>
+      <button mat-raised-button color="primary" (click)="testAuthorize()">Tester appel avec Authorize</button>
+    </p>
+  </div>
+</div>
+
+
+
