@@ -52,6 +52,10 @@ export class ChatComponent  {
       this.messages.push(message);
     });
 
+    this.hubConnection.on('ChannelsList', (data) => {
+      this.channelsList = data
+    })
+
     // TODO: Écouter le message pour quitter un channel (lorsque le channel est effacé)
 
     // On se connecte au Hub
@@ -82,11 +86,14 @@ export class ChatComponent  {
 
   createChannel(){
     // TODO: Ajouter un invoke
+    this.hubConnection!.invoke('CreateChannel' , this.newChannelName)
   }
 
   deleteChannel(channel: Channel){
     // TODO: Ajouter un invoke
   }
+
+
 
   leaveChannel(){
     let selectedChannelId = this.selectedChannel ? this.selectedChannel.id : 0;
