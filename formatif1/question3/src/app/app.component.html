@@ -1,0 +1,44 @@
+<mat-toolbar style="display: flex;">
+  <mat-icon style="margin-right: 8px">class</mat-icon>
+  <span>Super Form Infini</span>
+  <span style="flex: 1 1 auto;"></span>
+</mat-toolbar>
+
+<h1>Formulaire qui sert à rien</h1>
+<mat-card style="width: 700px; margin: auto; padding: 20px;">
+  <form >
+
+    <mat-form-field style="width: 100%">
+        <mat-label>Nom</mat-label>
+        <input matInput type="text" placeholder="Nom et prénom" name="name" >
+        
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%">
+      <mat-label>Numéro de rue</mat-label>
+      <input matInput type="number" placeholder="5230" name="roadnumber">
+      
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%">
+        <mat-label>Rue</mat-label>
+        <input matInput type="text" placeholder="Resther" name="rue">
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%">
+      <mat-label>Code Postal</mat-label>
+      <input matInput type="text" placeholder="H2J8B2" name="postalcode">
+      
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%">
+      <mat-label>Commentaire</mat-label>
+      <textarea matInput placeholder="Votre commentaire" name="comments"></textarea>
+      
+    </mat-form-field>
+
+    <mat-card-actions align="end">
+      <button  mat-raised-button color="primary" >Acheter</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

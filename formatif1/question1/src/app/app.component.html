@@ -1,0 +1,22 @@
+<mat-toolbar style="display: flex">
+  <mat-icon style="margin-right: 8px" routerLink="/">class</mat-icon>
+  <a routerLink="/"><span>Super Question 2 Infinie</span></a>
+  <span style="flex: 1 1 auto"></span>
+  <span>{{ user.currentUser?.username }}</span>
+  @if(user.currentUser == null) {
+
+  <button mat-raised-button [routerLink]="['/login']" style="margin: 20px">
+    Se connecter
+  </button>
+  } @if(user.currentUser != null) {
+  <button
+    mat-raised-button
+    color="warn"
+    (click)="user.disconnect()"
+    style="margin: 20px"
+  >
+    Se déconnecter
+  </button>
+  }
+</mat-toolbar>
+<router-outlet></router-outlet>

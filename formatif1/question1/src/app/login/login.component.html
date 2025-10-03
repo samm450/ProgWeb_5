@@ -1,0 +1,28 @@
+<div
+  style="
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  "
+>
+  <mat-card style="margin: 16px; padding: 16px">
+    <form (ngSubmit)="login()">
+      <mat-form-field>
+        <mat-label>Choisir un utilisateur</mat-label>
+        <mat-select [(ngModel)]="selectedUser" name="user">
+          @for(lover of users; track lover.username) {
+          <mat-option [value]="lover">
+            {{ lover.username }}
+          </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="primary" style="margin: 20px">
+        Connecter
+      </button>
+    </form>
+  </mat-card>
+</div>

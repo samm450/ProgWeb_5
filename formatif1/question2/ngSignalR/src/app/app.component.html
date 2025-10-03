@@ -1,0 +1,49 @@
+<img src="assets/pizzaHub.png" style="height: 160px;"/>
+<div class="main">
+  @if (!isConnected) {
+    <div>
+      Connecting...
+    </div>
+  }
+  @if (isConnected) {
+    <div>
+      <div>
+        Nb connected users: {{nbUsers}}
+      </div>
+      <h1>Achat de pizza en groupe!</h1>
+      @if (selectedChoice < 0) {
+        <div >
+          <h2>Choisissez une pizza</h2>
+          <img (click)="selectChoice(0)" src="assets/pizza.png" style="height: 195px;"/>
+          <img (click)="selectChoice(1)" src="assets/pizzaAnanas.png" style="height: 195px;"/>
+        </div>
+      }
+      @if (selectedChoice >= 0) {
+        <div>
+          <h2>Votre pizza</h2>
+          @if (selectedChoice == 0) {
+            <img src="assets/pizza.png" style="height: 195px;"/>
+          }
+          @if (selectedChoice == 1) {
+            <img src="assets/pizzaAnanas.png" style="height: 195px;"/>
+          }
+          <div>
+            <button mat-raised-button color="warn" (click)="unselectChoice()">Changer de pizza</button>
+          </div>
+          <h2>Achetez des pizzas</h2>
+          <div class="section">
+            Prix d'une pizza: <b>{{pizzaPrice}}$</b>
+          </div>
+          <div class="section">
+            <span class="info">Total d'argent: {{money}}$</span>
+            <button mat-raised-button color="accent" (click)="addMoney()">Ajouter 2$</button>
+          </div>
+          <div class="section">
+            <span class="info">Nombre de pizzas: {{nbPizzas}}</span>
+            <button mat-raised-button color="primary" [disabled]="money < pizzaPrice" (click)="buyPizza()">Acheter une pizza</button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
