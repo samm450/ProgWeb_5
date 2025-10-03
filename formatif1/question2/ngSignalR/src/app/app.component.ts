@@ -33,11 +33,23 @@ export class AppComponent {
       .build();
 
     // TODO: Mettre isConnected à true seulement une fois que la connection au Hub est faite
-    this.isConnected = true;
+    this.hubConnection!.on('EnvoiePrix', (data) => {
+        console.log(data);
+        this.pizzaPrice = data
+    });
+
+     this.hubConnection
+        .start()
+        .then(() => {
+            console.log('La connexion est active!');
+            this.isConnected = true;
+          })
+        .catch(err => console.log('Error while starting connection: ' + err));
   }
 
   selectChoice(selectedChoice:number) {
     this.selectedChoice = selectedChoice;
+    this.hubConnection?.invoke("SelectChoice", selectedChoice)
   }
 
   unselectChoice() {
