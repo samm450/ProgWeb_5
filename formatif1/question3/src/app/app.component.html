@@ -6,17 +6,25 @@
 
 <h1>Formulaire qui sert à rien</h1>
 <mat-card style="width: 700px; margin: auto; padding: 20px;">
-  <form >
+  <form [formGroup]="formGroup">
 
     <mat-form-field style="width: 100%">
         <mat-label>Nom</mat-label>
-        <input matInput type="text" placeholder="Nom et prénom" name="name" >
-        
+        <input matInput type="text" placeholder="Nom et prénom" formControlName="name" >
+        @if(formGroup.get('name')?.hasError('required')){
+          <mat-error> Votre nom est <strong>requis</strong> </mat-error>
+        }
     </mat-form-field>
 
     <mat-form-field style="width: 100%">
       <mat-label>Numéro de rue</mat-label>
-      <input matInput type="number" placeholder="5230" name="roadnumber">
+      <input matInput type="number" placeholder="5230" formControlName="roadnumber">
+      @if(formGroup.get('roadnumber')?.hasError('required')){
+          <mat-error> Votre numero de rue est <strong>requis</strong> </mat-error>
+        }
+      @if(formGroup.get('roadnumber')?.hasError('min') || formGroup.get('roadnumber')?.hasError('max') ){
+        <mat-error> minimum est 1000 et max et 9999</mat-error> 
+      }
       
     </mat-form-field>
 
@@ -28,7 +36,9 @@
     <mat-form-field style="width: 100%">
       <mat-label>Code Postal</mat-label>
       <input matInput type="text" placeholder="H2J8B2" name="postalcode">
-      
+       @if(formGroup.get('postalcode')?.hasError('pattern')){
+        <mat-error> le code postal est mal ecrit</mat-error> 
+      }
     </mat-form-field>
 
     <mat-form-field style="width: 100%">

@@ -16,12 +16,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 bootstrapApplication(AppComponent, {
     providers: [
         importProvidersFrom(BrowserModule, MatFormFieldModule, MatInputModule, MatToolbarModule, MatIconModule, MatButtonModule, MatCardModule, MatChipsModule, MatDialogModule, MatProgressBarModule, MatSelectModule, ReactiveFormsModule),
-        provideAnimations()
+        provideAnimations(), provideAnimationsAsync('noop')
     ]
 })
   .catch(err => console.error(err));
