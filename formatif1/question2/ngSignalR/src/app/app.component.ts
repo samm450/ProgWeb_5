@@ -71,6 +71,7 @@ export class AppComponent {
   }
 
   unselectChoice() {
+    this.hubConnection?.invoke('UnselectChoice', this.selectedChoice)
     this.selectedChoice = -1;
   }
 
@@ -81,4 +82,5 @@ export class AppComponent {
   buyPizza() {
     this.hubConnection?.invoke("BuyPizza", this.selectedChoice)
   }
+
 }
