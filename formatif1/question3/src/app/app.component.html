@@ -35,7 +35,7 @@
 
     <mat-form-field style="width: 100%">
       <mat-label>Code Postal</mat-label>
-      <input matInput type="text" placeholder="H2J8B2" name="postalcode">
+      <input matInput type="text" placeholder="H2J8B2" formControlName="postalcode">
        @if(formGroup.get('postalcode')?.hasError('pattern')){
         <mat-error> le code postal est mal ecrit</mat-error> 
       }
@@ -43,7 +43,10 @@
 
     <mat-form-field style="width: 100%">
       <mat-label>Commentaire</mat-label>
-      <textarea matInput placeholder="Votre commentaire" name="comments"></textarea>
+      <textarea matInput placeholder="Votre commentaire" formControlName="comments"></textarea>
+      @if(formGroup.get('comments')?.hasError('Commentaire')){
+        <mat-error> popo ton commentaire</mat-error>
+      }
       
     </mat-form-field>
 
