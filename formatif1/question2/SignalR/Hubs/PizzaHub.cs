@@ -43,7 +43,10 @@ namespace SignalR.Hubs
 
         public async Task UnselectChoice(PizzaChoice choice)
         {
+            string groupName = _pizzaManager.GetGroupName(choice);
 
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
+            await Clients.Group(groupName).SendAsync("Unselect");
         }
 
         public async Task AddMoney(PizzaChoice choice)
